@@ -9,8 +9,6 @@ public class BingoCard {
     private final int TOTALCARDS = 8;
     private int[] selectedCards = new int[4];
 
-    UserInterface base = new UserInterface();
-
     // numCard mutator and accessor
     public void setNumCards(int numCards) {
         this.numCards = numCards;
@@ -46,7 +44,6 @@ public class BingoCard {
 
         } catch (Exception e) {
             System.out.println("Error marking card with slected number");
-            base.menu();
         }
     }
 

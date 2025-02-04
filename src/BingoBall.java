@@ -9,11 +9,42 @@ import java.util.Random;
 public class BingoBall {
     private int number;
     private String letter;
+    private int[] numbers = new int[75];
     private Random random = new Random();
 
     public BingoBall() {
-        this.number = random.nextInt(75) + 1;
+        do {
+            number = random.nextInt(75) + 1;
+        } while (isNumberUsed(number));
+
+        storeNumber(number);
         setLetter();
+    }
+
+    private boolean isNumberUsed(int num) {
+        for (int i = 0; i < numbers.length; i++) {
+            if (numbers[i] == num) {
+                return true; // Number is already used
+            }
+            if (numbers[i] == 0) {
+                break; // Stop checking at the first empty slot
+            }
+        }
+        return false;
+    }
+
+    private void storeNumber(int num) {
+        for (int i = 0; i < numbers.length; i++) {
+            if (numbers[i] == 0) {
+                numbers[i] = num;
+                break;
+            }
+        }
+    }
+
+    private void setLetter() {
+        char[] letters = {'B', 'I', 'N', 'G', 'O'};
+        letter = letters[(number - 1) / 15] + "";
     }
 
     public int getNumber() {
@@ -22,24 +53,6 @@ public class BingoBall {
 
     public String getLetter() {
         return letter;
-    }
-
-    private void setLetter() {
-        if (number >= 1 && number <= 15) {
-            letter = "B";
-        } else if (number >= 16 && number <= 30) {
-            letter = "I";
-        } else if (number >= 31 && number <= 45) {
-            letter = "N";
-        } else if (number >= 46 && number <= 60) {
-            letter = "G";
-        } else {
-            letter = "O";
-        }
-    }
-
-    public String toString() {
-        return letter + number;
     }
 
     // Check for bingo

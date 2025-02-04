@@ -36,40 +36,52 @@ public class UserInterface {
         System.out.println("--------------------------------");
         System.out.println("c: check bingo, r: roll ball");
         System.out.println("--------------------------------");
-
+    
         try {
             input = scan.next().charAt(0);
         } catch (Exception e) {
             System.out.println("Invalid input. Please enter a valid character.");
             menu();
         }
-
+    
         switch (input) {
             case 'q':
                 System.out.println("Thank you for playing!");
                 scan.close(); // Close the scanner
                 System.exit(0); // Exit the program
                 break;
+    
             case 'p':
                 System.out.println("Printing cards...");
-                printCards();
+                card.print(cardNum);
                 break;
+    
             case 'x':
                 System.out.println("Which card would you like to mark?");
                 cardNum = scan.nextInt();
-                //Print the card
-                card.print(cardNum);
+                scan.nextLine(); // Consume newline character
+    
                 System.out.println("Which number would you like to mark?");
-                number = scan.nextLine();
+                number = scan.nextLine(); // Read the number to mark
+    
                 card.markCard(cardNum, number);
                 break;
+    
             case 'c':
                 System.out.println("Checking bingo...");
+                if (card.checkBingo(cardNum)) { // Assuming checkBingo() is in BingoCard
+                    System.out.println("Bingo! You win!");
+                } else {
+                    System.out.println("No bingo yet. Keep playing!");
+                }
                 break;
+    
             case 'r':
                 System.out.println("Rolling ball...");
-                //ball.BingoBall();
+                ball = new BingoBall(); // Generate a new Bingo ball
+                System.out.println("Rolled: " + ball.getLetter() + ball.getNumber());
                 break;
+    
             default:
                 System.out.println("Invalid input. Please enter a valid character.");
                 menu();
@@ -77,9 +89,8 @@ public class UserInterface {
         }
     }
 
+    // method for printing cards for ui
     public void printCards() {
-        for (int i = 0; i < card.getNumCards(); i++) { //Iterate through selected cards and print them
-            card.print(i); 
-        }
+        //card.print(cardNum);
     }
 }
