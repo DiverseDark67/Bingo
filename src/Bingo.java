@@ -1,23 +1,21 @@
 import java.util.Scanner;
 
-/**
- * Author: Andrew Rhode
- * Date: 2025-01-30
- * Version: 1.0
- */
+
 
 public class Bingo {
     public static void main(String[] args) throws Exception {
         Scanner scanner = new Scanner(System.in);
         BingoCard base = new BingoCard();
         CardReader reader = new CardReader();
+        UserInterface ui = new UserInterface();
+
         boolean manual = false;
         boolean realBingo = false;
         boolean checkBingo = false;
 
         // Read the cards from a text file
         try {
-            for (int i = 0; i < 8; i++) {
+            for (int i = 0; i < 7; i++) {
                 reader.readCard(i);
             }
         } catch (Exception e) {
@@ -88,19 +86,11 @@ public class Bingo {
             }
         }
 
+        // Start the game
         System.out.println("\nStarting Bingo");
         while (realBingo == false) {
-            BingoBall ball = new BingoBall();
-            System.out.println("The next ball is: " + ball);
-            System.out.println("Would you like to check your cards for a Bingo?(yes/no)");
-            String check = scanner.next();
-            check = check.toLowerCase();
-            if (check.equals("yes")) {
-                checkBingo = true;
-            }
-            if (checkBingo) {
-                System.out.println("Checking for Bingo...");
-            }
+            ui.menu();
+            ui.printCards();
         }
 
         scanner.close();

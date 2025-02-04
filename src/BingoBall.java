@@ -1,8 +1,8 @@
 import java.util.Random;
 /**
  * Author: Andrew Rhode
- * Version: 1.0
- * Date: 01/31/2025
+ * Date: 2025-02-03
+ * Version: 1.1.0
  * This is a class that represents a Bingo ball. It will roll a random number between 1 and 75. Based on that number,
  * It will determine if it is a B, I, N, G, or O ball.
  */

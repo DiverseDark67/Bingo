@@ -1,6 +1,12 @@
 import java.io.*;
 import java.util.*;
 
+/**
+ * Author: Andrew Rhode
+ * Date: 2025-02-03
+ * Version: 1.1.0
+ */
+
 public class CardReader {
     String filename = "BingoCards.txt";
     Map<String, List<int[]>> cards = new LinkedHashMap<>();
